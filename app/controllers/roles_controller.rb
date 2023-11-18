@@ -4,7 +4,7 @@ class RolesController < ApplicationController
 
     def index
         @roles = Role.all
-        render json: @roles
+        render json: @roles, status: :ok
     end
 
     def create

@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :roles
+  resources :users do
+    collection do
+      #get 'teachers', to: 'users#teachers'
+    end
+  end
 end

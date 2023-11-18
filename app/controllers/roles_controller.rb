@@ -18,11 +18,7 @@ class RolesController < ApplicationController
     end
 
     def show
-        if @role
-            render json: @role
-        else
-            render 
-        end
+        render json: @role
     end
 
     def update

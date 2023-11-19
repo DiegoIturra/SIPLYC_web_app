@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_18_191419) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_19_201053) do
   create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -22,8 +22,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_191419) do
     t.string "surname"
     t.string "second_surname"
     t.string "email"
-    t.string "passsword"
-    t.bigint "role_id", null: false
+    t.string "password"
+    t.bigint "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["role_id"], name: "index_users_on_role_id"

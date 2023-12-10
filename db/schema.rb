@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_10_214359) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_10_224352) do
   create_table "age_ranges", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "min_age"
@@ -41,6 +41,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_214359) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "student_files", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "mother_socioeconomic_level"
+    t.string "father_socioeconomic_level"
+    t.string "breastfeeding_period"
+    t.string "socieconomic_level"
+    t.bigint "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_files_on_student_id"
+  end
+
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "rut"
     t.string "names"
@@ -59,6 +70,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_214359) do
     t.datetime "updated_at", null: false
     t.index ["age_range_id"], name: "index_students_on_age_range_id"
     t.index ["kinder_garden_id"], name: "index_students_on_kinder_garden_id"
+  end
+
+  create_table "teacher_students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_teacher_students_on_student_id"
+    t.index ["teacher_id"], name: "index_teacher_students_on_teacher_id"
   end
 
   create_table "teachers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -85,7 +105,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_214359) do
   end
 
   add_foreign_key "kinder_gardens", "cities"
+  add_foreign_key "student_files", "students"
   add_foreign_key "students", "age_ranges"
   add_foreign_key "students", "kinder_gardens"
+  add_foreign_key "teacher_students", "students"
+  add_foreign_key "teacher_students", "teachers"
   add_foreign_key "users", "roles"
 end

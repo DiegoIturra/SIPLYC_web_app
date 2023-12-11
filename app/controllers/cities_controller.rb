@@ -1,4 +1,4 @@
-class CityController < ApplicationController
+class CitiesController < ApplicationController
     before_action :set_city, only: %i[ show update destroy ]
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 

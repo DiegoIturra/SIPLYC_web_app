@@ -1,10 +1,10 @@
-class KinderGardenController < ApplicationController
+class KinderGardensController < ApplicationController
     before_action :set_kinder_garden, only: %i[ show update destroy ]
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def index
         @kinder_gardens = KinderGarden.all
-        render json: @cities, status: :ok
+        render json: @kinder_gardens, status: :ok
     end
 
     def create

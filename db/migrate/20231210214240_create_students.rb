@@ -19,18 +19,3 @@ class CreateStudents < ActiveRecord::Migration[7.1]
     end
   end
 end
-
-# {
-#     "names": "Diego Alfredo",
-#     "rut" : "19364598-4",
-#     "father_lastname": "Iturra",
-#     "mother_lastname": "Huenteo",
-#     "birthday": "1997-07-26",
-#     "gender": "male",
-#     "group": "group1",
-#     "email": "diego269707@gmail.com",
-#     "password": "childrenpassword123",
-#     "state": "state",
-#     "kinder_garden_id": 1,
-#     "age_range_id": 1
-# }

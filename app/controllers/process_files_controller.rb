@@ -1,33 +1,40 @@
+require 'json'
+
 class ProcessFilesController < ApplicationController
 
     def process_excel_file
         items_params = params.require(:data)
 
-        puts "showing parameters #{items_params}"
-
-        cities = []
-        kinder_gardens = []
-
         items_params.each do |item|
-            city = City.where(name: item[:city]).take
-            cities << city
 
-            # if city doesn't exist, then save in BD
-            # Do the same for other properties
+            # Step1: Create City
+            city = City.find_or_create_by(name: item[:city])
 
-            # get child data
-            # if exist a child whose names, father_lastname
-            # mother_lastname and rut are exactly then asosciate
-            # info with that child
+            # Step2: Create KinderGarden
+            kinder_garden = KinderGarden.find_or_create_by(name: item[:kinder_garden], city_id: city.id)
 
-            kinder_garden = KinderGarden.where(name: item[:kinder_garden]).take
+            # Step3: Create AgeRange
+            age_range = AgeRange.find_or_create_by(name: item[:age_range])
+
+            # Step4: Create Teacher
+            teacher = Teacher.find_or_create_by(names: item[:teacher])
+
+            # Step5: Create Student
+            names = item[:names]
+            father_lastname = item[:father_lastname]
+            mother_lastname = item[:mother_lastname]
+            rut = item[:rut]
+
+            student = Student.find_or_create_by(names: names, father_lastname: father_lastname, 
+                        mother_lastname: mother_lastname, rut: rut, 
+                        kinder_garden_id: kinder_garden.id, 
+                        age_range_id: age_range.id)
             
-            if kinder_garden
-                kinder_gardens << kinder_garden
-            end
-            
+            # Step6: Create TeacherStudent
+            TeacherStudent.find_or_create_by(teacher_id: teacher.id, student_id: student.id)
         end
 
-        render json: kinder_gardens, status: :ok
+        render json: { items: items_params }, status: :ok
     end
+
 end

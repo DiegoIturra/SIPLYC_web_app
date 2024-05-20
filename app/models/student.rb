@@ -8,5 +8,6 @@ class Student < ApplicationRecord
   validates :gender, inclusion: { 
     in: %w(femenino masculino), 
     message: "%{value} no es un género válido" 
-  }
+  }, allow_nil: true
+
 end

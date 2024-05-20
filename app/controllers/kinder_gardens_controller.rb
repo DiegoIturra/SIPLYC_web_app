@@ -1,2 +1,27 @@
+require 'json'
+
 class KinderGardensController < BaseController
+
+    # TODO: Base controller could be improved to handle this joins and selects with other tables
+    def index
+        @kinder_gardens = KinderGarden.joins(:city)
+            .select('kinder_gardens.*, cities.name as city_name')
+        
+            render json: @kinder_gardens, status: :ok
+    end
+    
+
+    def show
+        @kinder_garden = KinderGarden.joins(:city)
+                    .select('kinder_gardens.*, cities.name as city_name')
+                    .find(params[:id])
+
+        render json: @kinder_garden, status: :ok
+    end
+
+    private
+
+    def resource_params
+        params.require(:kinder_garden).permit(:name, :phone, :address, :city_id)
+    end
 end

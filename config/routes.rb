@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  resources :roles, :users, :cities, :kinder_gardens, :teachers, :students, :age_ranges, :teacher_students
+  resources :roles, :users, :cities, :kinder_gardens, :teachers, :students, :age_ranges
+  
+  resources :teacher_students do
+    collection do
+      get 'paginated'
+    end
+  end
 
   resources :process_files do
     collection do

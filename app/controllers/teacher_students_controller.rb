@@ -9,6 +9,17 @@ class TeacherStudentsController < BaseController
         render json: assignment, include: [:teacher, :student], status: :ok
     end
 
+
+    def update
+        assignment = TeacherStudent.find(params[:id])
+        if assignment.update(resource_params)
+            render json: assignment, include: [:teacher, :student], status: :ok
+        else
+            render json: assignment.errors, status: :unprocessable_entity
+        end
+
+    end
+
     def paginated
         page = (params[:page] || 1).to_i
         per_page = (params[:per_page] || 10).to_i
@@ -27,5 +38,11 @@ class TeacherStudentsController < BaseController
             has_next: has_next,
             has_prev: has_prev
         }, status: :ok
+    end
+
+    private
+    
+    def resource_params
+        params.require(:teacher_student).permit(:teacher_id, :student_id)
     end
 end

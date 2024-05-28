@@ -9,6 +9,16 @@ class TeacherStudentsController < BaseController
         render json: assignment, include: [:teacher, :student], status: :ok
     end
 
+    def create
+        assignment = TeacherStudent.new(resource_params)
+
+        if assignment.save
+            render json: assignment, include: [:teacher, :student], status: :created
+        else
+            render json: assignment.errors, status: :unprocessable_entity
+        end
+    end
+
 
     def update
         assignment = TeacherStudent.find(params[:id])
@@ -41,7 +51,7 @@ class TeacherStudentsController < BaseController
     end
 
     private
-    
+
     def resource_params
         params.require(:teacher_student).permit(:teacher_id, :student_id)
     end

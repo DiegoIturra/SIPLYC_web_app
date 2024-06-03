@@ -4,6 +4,7 @@ class Student < ApplicationRecord
   has_many :teacher_students
   has_many :teachers, through: :teacher_students
   has_one :student_file
+  has_many :sessions
   
   validates :gender, inclusion: { 
     in: %w(femenino masculino), 

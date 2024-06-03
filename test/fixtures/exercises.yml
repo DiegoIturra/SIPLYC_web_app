@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  date: MyString
+  left_object: MyString
+  right_object: MyString
+  central_object: MyString
+  max_time: MyString
+  answer: MyString
+  answer_time: MyString
+
+two:
+  type: 
+  date: MyString
+  left_object: MyString
+  right_object: MyString
+  central_object: MyString
+  max_time: MyString
+  answer: MyString
+  answer_time: MyString

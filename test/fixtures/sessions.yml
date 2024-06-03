@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_session: 2024-06-02
+  hour: 2024-06-02 22:18:53
+  session_number: 1
+  state: MyString
+  duration: 2024-06-02 22:18:53
+  apk_version: 1
+  comments: MyString
+
+two:
+  date_session: 2024-06-02
+  hour: 2024-06-02 22:18:53
+  session_number: 1
+  state: MyString
+  duration: 2024-06-02 22:18:53
+  apk_version: 1
+  comments: MyString

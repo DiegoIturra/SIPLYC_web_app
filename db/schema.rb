@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_001151) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_03_022056) do
   create_table "age_ranges", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "min_age"
@@ -39,6 +39,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_001151) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "date_session"
+    t.time "hour"
+    t.integer "session_number"
+    t.string "state"
+    t.time "duration"
+    t.integer "apk_version"
+    t.string "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "teacher_id"
+    t.bigint "student_id"
+    t.bigint "tablet_id"
+    t.index ["student_id"], name: "index_sessions_on_student_id"
+    t.index ["tablet_id"], name: "index_sessions_on_tablet_id"
+    t.index ["teacher_id"], name: "index_sessions_on_teacher_id"
   end
 
   create_table "student_files", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -112,6 +130,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_001151) do
   end
 
   add_foreign_key "kinder_gardens", "cities"
+  add_foreign_key "sessions", "students"
+  add_foreign_key "sessions", "tablets"
+  add_foreign_key "sessions", "teachers"
   add_foreign_key "student_files", "students"
   add_foreign_key "students", "age_ranges"
   add_foreign_key "students", "kinder_gardens"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_030529) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_024030) do
   create_table "activities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "activity_type"
     t.datetime "created_at", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_030529) do
   end
 
   create_table "exercises", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "type"
+    t.string "category"
     t.string "date"
     t.string "left_object"
     t.string "right_object"
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_030529) do
     t.date "date_session"
     t.time "hour"
     t.integer "session_number"
-    t.string "state"
+    t.string "state", default: "incomplete"
     t.time "duration"
     t.integer "apk_version"
     t.string "comments"
@@ -129,7 +129,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_030529) do
 
   create_table "tablets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "model"
-    t.string "state"
+    t.string "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -12,5 +12,5 @@ class Session < ApplicationRecord
             in: %w(complete incomplete), 
             message: "%{value} is not a valid state" 
         }, 
-        allow_nil: false,
+        allow_nil: false
 end

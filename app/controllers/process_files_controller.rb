@@ -25,7 +25,7 @@ class ProcessFilesController < ApplicationController
             mother_lastname = item[:mother_lastname]
             rut = item[:rut]
 
-            student = Student.find_or_create_by(names: names, father_lastname: father_lastname, 
+            Student.find_or_create_by(names: names, father_lastname: father_lastname, 
                         mother_lastname: mother_lastname, rut: rut, 
                         kinder_garden_id: kinder_garden.id, 
                         age_range_id: age_range.id)

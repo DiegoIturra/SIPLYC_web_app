@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  resources :roles, :users, :cities, :kinder_gardens, :teachers, 
-            :students, :age_ranges, :tablets, :activities, 
+  resources :roles, :users, :cities, 
+            :age_ranges, :tablets, :activities, 
             :exercises, :activity_sessions, :activity_exercises
 
-  resources :teacher_students do
+  resources :teacher_students, :kinder_gardens, :students, :teachers do
     collection do
       get 'paginated'
     end
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :sessions do
     collection do
       get 'teacher/:teacher_id', to: 'sessions#find_by_teacher', as: 'find_by_teacher'
+      get 'teacher/:teacher_id/paginated', to: 'sessions#paginated', as: 'paginated'
     end
   end
 

@@ -7,12 +7,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :roles, :users, :cities, :kinder_gardens, :teachers, 
-            :students, :age_ranges, :tablets, :sessions, :activities, 
-            :exercises
+            :students, :age_ranges, :tablets, :activities, 
+            :exercises, :activity_sessions, :activity_exercises
 
   resources :teacher_students do
     collection do
       get 'paginated'
+    end
+  end
+
+  resources :sessions do
+    collection do
+      get 'teacher/:teacher_id', to: 'sessions#find_by_teacher', as: 'find_by_teacher'
     end
   end
 

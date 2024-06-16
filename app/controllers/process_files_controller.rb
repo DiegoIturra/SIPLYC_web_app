@@ -16,8 +16,8 @@ class ProcessFilesController < ApplicationController
             # Step3: Create AgeRange
             age_range = AgeRange.find_or_create_by(name: item[:age_range])
 
-            # Step4: Create Teacher
-            teacher = Teacher.find_or_create_by(names: item[:teacher])
+            # Step4: Create Tablet
+            Tablet.find_or_create_by(model: item[:tablet])
 
             # Step5: Create Student
             names = item[:names]
@@ -25,13 +25,10 @@ class ProcessFilesController < ApplicationController
             mother_lastname = item[:mother_lastname]
             rut = item[:rut]
 
-            student = Student.find_or_create_by(names: names, father_lastname: father_lastname, 
+            Student.find_or_create_by(names: names, father_lastname: father_lastname, 
                         mother_lastname: mother_lastname, rut: rut, 
                         kinder_garden_id: kinder_garden.id, 
                         age_range_id: age_range.id)
-            
-            # Step6: Create TeacherStudent
-            TeacherStudent.find_or_create_by(teacher_id: teacher.id, student_id: student.id)
         end
 
         render json: { items: items_params }, status: :ok

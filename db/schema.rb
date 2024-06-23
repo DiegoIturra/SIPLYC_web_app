@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_024030) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_20_231816) do
   create_table "activities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "activity_type"
     t.datetime "created_at", null: false
@@ -156,8 +156,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_024030) do
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "names"
-    t.string "surname"
-    t.string "second_surname"
+    t.string "father_lastname"
+    t.string "mother_lastname"
     t.string "email"
     t.string "password"
     t.bigint "role_id"
